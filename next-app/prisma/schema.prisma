@@ -1,0 +1,20 @@
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../lib/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User {
+  id         String      @id @default(uuid())
+  name       String
+  email      String      @unique
+  imageUrl   String   
+  isOnline   Boolean     @default(true)
+}                        // as created he get true online
+                    // when press logout we call it to offline by using "makeoffline".GET(user-email)
